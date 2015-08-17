@@ -20,7 +20,10 @@ RUN apt-get update && apt-get install -y \
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 ADD startup.sh /etc/init.d/agent-instance-startup
 ADD https://github.com/rancherio/swarm/releases/download/v0.1.0-rancher/swarm /usr/bin/swarm
+ADD https://github.com/sonchang/rancher-metadata/releases/download/test_0/rancher-metadata /usr/bin/rancher-metadata
+EXPOSE 8083
 RUN chmod +x /usr/bin/swarm
+RUN chmod +x /usr/bin/rancher-metadata
 CMD ["/etc/init.d/agent-instance-startup", "init"]
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y racoon
 # Work around overlay bug
